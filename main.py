@@ -16,3 +16,5 @@ def neuron(inputs, weights, bias):
     return sigmoid(total)
 
 print(neuron(inputs, weights, bias))# 0.6456563062257954
+
+## loss = (y_pred - y_true)**2
