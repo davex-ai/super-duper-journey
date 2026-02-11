@@ -35,7 +35,7 @@ lr = 0.1         # learning rate
 z = w * x + b
 y_pred = sigmoid(z)
 
-print("Confidence(sigmoid)", sigmoid(y_pred))
+print("Confidence(sigmoid)", y_pred)
 
 loss = 2 * (y_pred - y_true)
 print("Loss", loss)
