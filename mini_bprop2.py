@@ -1,54 +1,42 @@
 import math
 
-# data
+# -------- Data --------
 x = [2.0, 3.5]
 y_true = 1.0
 
-# parameters
+# -------- Parameters --------
 w = [0.8, 0.2]
 b = -0.2
 lr = 0.1
+epochs = 20
 
 def sigmoid(z):
     return 1 / (1 + math.exp(-z))
+for epoch in range(epochs):
+    # ---- Forward pass ----
+    z = sum(xi * wi for xi, wi in zip(x, w)) + b
+    y_pred = sigmoid(z)
 
-# ---- Forward pass ----
-z = sum(x * w for x, w in zip(x, w)) + b
-y_pred = sigmoid(z)
+    # ---- Loss (MSE) ----
+    loss = (y_pred - y_true) ** 2
 
-print("z:", z)
-print("y_pred:", y_pred)
+    # ---- Backprop ----
+    dL_dy = 2 * (y_pred - y_true) # this is formula for loss wrt pred
+    dy_dz = y_pred * (1 - y_pred) # this is formula for pred change wrt z
 
-# ---- Loss ----
-loss = (y_pred - y_true) ** 2
-print("loss:", loss)
+    dz_dw = x
+    dz_db = 1
+    #
+    dL_dw = [dL_dy * dy_dz * xi for xi in dz_dw]
+    dL_db = dL_dy * dy_dz * dz_db
 
-# ---- Backprop ----
+    # ---- Update ----
+    w = [wi - lr * dwi for wi, dwi in zip(w, dL_dw)]
+    b = b - lr * dL_db
 
-# A. dL/dy_pred
-dL_dy = 2 * (y_pred - y_true)
-print("dL/dy:", dL_dy)
-
-# B. dy_pred/dz
-dy_dz = y_pred * (1 - y_pred)
-print("dy/dz:", dy_dz)
-
- # C. dz/dw, dz/db
-dz_dw = x
-dz_db = 1
-
-# ---- Chain rule ----
-dL_dw = dL_dy * dy_dz * dz_dw
-dL_db = dL_dy * dy_dz * dz_db
-
-print("dL/dw:", dL_dw)
-print("dL/db:", dL_db)
-
-# ---- Update ----
-w = [wi - lr * dwi for wi,dwi in zip(w, dL_dw)]
-b = b - lr * dL_db
-
-print("new w:", w)
-print("new b:", b)
-
-
+    print(
+        f"Epoch {epoch+1:02d} | "
+        f"loss={loss:.4f} | "
+        f"y_pred={y_pred:.4f} | "
+        f"w={w} | b={b:.4f}"
+    )
