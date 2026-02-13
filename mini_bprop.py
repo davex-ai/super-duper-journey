@@ -14,7 +14,7 @@ def sigmoid(z):
 
 # ---- Forward pass ----
 z = w * x + b
-y_pred = sigmoid(z)
+y_pred =  z
 
 print("z:", z)
 print("y_pred:", y_pred)
