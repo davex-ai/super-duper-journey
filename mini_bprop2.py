@@ -7,7 +7,7 @@ y_true = 1.0
 # -------- Parameters --------
 w = [0.8, 0.2]
 b = -0.2
-lr = 0.1
+lr = 5
 epochs = 20
 
 def sigmoid(z):
