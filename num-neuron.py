@@ -18,6 +18,15 @@ for epoch in range(epochs):
     z = np.dot(w, x) + b
     y_pred = sigmoid(z)
 
+    X = np.array([
+        [2.0, 3.5],
+        [1.0, 2.0],
+        [3.0, 1.0]
+    ])
+    w = np.array([0.8, 0.2])
+    for i in range(len(X)):
+        zi = np.dot(w, X[i]) + b
+
     # ---- Loss ----
     loss = (y_pred - y_true) ** 2
 
