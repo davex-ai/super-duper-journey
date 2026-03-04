@@ -38,17 +38,17 @@ for epoch in range(100):
     # BCE Loss: -[y*log(a2) + (1-y)*log(1-a2)]
     loss = -np.mean(y_true * np.log(a2 + 1e-9) + (1 - y_true) * np.log(1 - a2 + 1e-9))
 
-    predictions = (a2 > 0.5).astype(float)
-    accuracy = np.mean(predictions == y_true)
+    predictions = (a2 > 0.5).astype(float) #i dont get wats happening here
+    accuracy = np.mean(predictions == y_true) #i dont get wats happening here
 
-    # ---- 3. BACKWARD PASS (The "Blame" Game) ----
+    # ---- 3. BACKWARD PASS (The "Blame" Game) ----  u lost me here
 
     # Error at Output: For BCE + Sigmoid, the gradient is simply (Pred - True)
     # This is a beautiful mathematical shortcut!
     dz2 = a2 - y_true  # (3,1)
 
     # dW2 = error * input
-    dW2 = dz2.T @ a1 / X.shape[0]
+    dW2 = dz2.T @ a1 / X.shape[0] # would len(x) work here?
     db2 = np.mean(dz2, axis=0)
 
     # Backprop to Hidden Layer
