@@ -12,5 +12,12 @@ for _ in range(trials):
 # print(heads / trials)
 # print(heads  )
 X = np.random.randn(32, 10)
-print(X)
+# print(X)
 # s2e16
+# s3e7
+data = np.load('weights.npy')
+print(data)
+
+
+
+
