@@ -1,4 +1,4 @@
-from pandas import pandas as pd
+import pandas as pd
 
 data = {
     "name": ["Dave", "Ada", "John", "Mary", "Paul"],
