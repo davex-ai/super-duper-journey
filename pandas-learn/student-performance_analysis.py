@@ -9,3 +9,8 @@ data = {
 }
 
 df = pd.DataFrame(data)
+# print(df.head())
+# print(df.info())
+# print(df.describe())
+avg_score = df['math_score'] + df['english_score']
+print(avg_score.mean())
