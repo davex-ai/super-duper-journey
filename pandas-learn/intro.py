@@ -25,8 +25,24 @@ df = pd.DataFrame(data)
 # print(df[df["score"] >= 88])
 # df["passed"] = df["score"] >= 50
 # print(df)
-# print(df["score"].mean())
 # print(df["score"].max())
 # print(df["age"].min())
 
 
+# print the first 3 rows
+# print only the name column
+# print students with score > 85
+# print students with age >= 18
+# add a new column called passed where score >= 50
+# print the average score
+# print only name and score columns
+# print the row for Mary
+
+print(df[:3])
+print(df['name'])
+print(df['score'] > 85)
+print(df['age'] >= 18)
+df['passed'] = df['score'] >= 50
+print(df['score'].mean())
+print(df[['score' ,'name']])
+print(df[df['name'] == 'Mary'])
