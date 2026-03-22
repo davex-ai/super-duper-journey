@@ -14,7 +14,7 @@ df = pd.DataFrame(data)
 # print(df.info())
 # print(df.describe())
 df['avg_score'] = (df['math_score'] + df['english_score']) / 2
-print(df['avg_score'].mean())
+# print(df['avg_score'].mean())
 passed = df['avg_score'] >= 50
 high_attendance = df['attendance'] >= 90
 
@@ -38,4 +38,4 @@ best_overall = df.nlargest(1, 'overall_performance')
 
 # print(comparison)
 # print(df.sort_values('avg_score', ascending=False))
-print(df.sort_values('attendance', ascending=False))
+# print(df.sort_values('attendance', ascending=False))
