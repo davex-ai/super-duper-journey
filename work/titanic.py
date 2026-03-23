@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
@@ -36,6 +36,9 @@ print(cm)
 # Precision = TP / (TP + FP)
 precision = cm[1, 1] / (cm[1, 1] + cm[0, 1])
 # Recall = TP / (TP + FN)
-recall = cm[1, 1] / (cm[1, 1] + cm[0, 1])
+recall = cm[1, 1] / (cm[1, 1] + cm[1, 0])
 print("Recall:", recall)
 print("Precision:", precision)
+
+print("Precision:", precision_score(y_test, y_pred))
+print("Recall:", recall_score(y_test, y_pred))
