@@ -16,10 +16,13 @@ y = df['avg_score']         # output (target)
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.25, random_state=42
 )
-print(df.head())
+# print(df.head())
 model = LinearRegression()
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
-print(y_pred)
+print("Prediction:", y_pred)
+print("Actual Value:\n", y_train)
+
 mse = mean_squared_error(y_test, y_pred)
 print(mse)
+print()
