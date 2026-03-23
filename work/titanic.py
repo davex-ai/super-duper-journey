@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
@@ -27,6 +27,8 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
 print("Accuracy:", accuracy_score(y_test, y_pred))
-print(model.score(X_test, y_test))
+# print(model.score(X_test, y_test))
 importance = pd.Series(model[1].coef_[0], index=X.columns)
-print(importance.sort_values(ascending=False))
+# print(importance.sort_values(ascending=False))
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
