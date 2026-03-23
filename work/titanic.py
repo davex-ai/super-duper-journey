@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -42,3 +42,15 @@ print("Precision:", precision)
 
 print("Precision:", precision_score(y_test, y_pred))
 print("Recall:", recall_score(y_test, y_pred))
+
+scores = cross_val_score(model, X, y, cv=5)# cv=5 is doing what? why did we put raw x and not x_train and y train
+
+print("CV Scores:", scores)
+print("Average:", scores.mean())
+
+from sklearn.ensemble import RandomForestClassifier
+
+rf = RandomForestClassifier(n_estimators=100)
+rf.fit(X_train, y_train)
+
+print("RF Accuracy:", rf.score(X_test, y_test))
