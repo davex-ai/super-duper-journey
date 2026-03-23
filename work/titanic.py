@@ -2,6 +2,8 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 
 df = pd.read_csv("https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv")
 # print(df.head())
@@ -20,10 +22,11 @@ y = df['Survived']
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
-model = LogisticRegression(max_iter=1000)
+model = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print(model.score(X_test, y_test))
-print(model.coef_)
+importance = pd.Series(model[1].coef_[0], index=X.columns)
+print(importance.sort_values(ascending=False))
