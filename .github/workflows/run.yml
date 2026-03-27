@@ -25,7 +25,7 @@ jobs:
           git config --global user.email "omotoyedave4@gmail.com"
 
       - name: Run script
-        run: python main.py
+        run: python numpy-learn/main.py
 
       - name: Commit and Push results
         run: |
