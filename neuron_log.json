@@ -1628,5 +1628,10 @@
         "timestamp": "2026-04-14 22:10:25",
         "neuron_score": 0.7318,
         "status": "active"
+    },
+    {
+        "timestamp": "2026-04-14 23:09:51",
+        "neuron_score": 0.3583,
+        "status": "active"
     }
 ]
