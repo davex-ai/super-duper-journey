@@ -1963,5 +1963,10 @@
         "timestamp": "2026-04-18 19:37:34",
         "neuron_score": 0.8468,
         "status": "active"
+    },
+    {
+        "timestamp": "2026-04-18 20:30:16",
+        "neuron_score": 0.5478,
+        "status": "active"
     }
 ]
