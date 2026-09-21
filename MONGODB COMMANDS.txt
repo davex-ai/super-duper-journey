@@ -1,0 +1,185 @@
+NOTE : Database =pharmacy > Collections = drugs > Documents > Fields
+create..
+TO SWITCH/CREATE TO A PARTICULAR DATABASE........use pharmacy
+TO CREATE COLLECTION ....... db.createCollection('drugs')
+TO INSERT\CREATE DOCUMENT IN COLLECTION.......db.drugs.updateMany({"_id :1(optional),"name" : "ray"}) OR db.insert.documentname
+TO INSERT\CREATE multiple DOCUMENT IN COLLECTION.......db.drugs.updateMany([{"_id :1(optional),"name" : "ray"},{"_id :1(optional),"name" : "ray"}])
+TO ADD A DOCUMENT TO EXISTING COLLECTION...............db.Staffs.insert({_id : 2,Name : "Davida Alexander",Hobbies:['reading','slapping','complaning'],Age : 15})
+
+FIND...
+TO SEE \findALL ACTIVE DATABASES........show dbs
+TO SEE\FIND ALL COLLECTION IN A DATABASE..........db.getCollectionNames() or show collections
+TO SEE\FIND ALL DOCUMENTS IN A COLLECTION........db.drugs.find()
+
+Queries.....
+to set find querie........db.drugs.find({drug:"panadol"}) (for strings)
+                                             db.drugs.find({_id : 21 }) (for integer)
+to find using equal operator.................db.drugs.find({ "price" : {$eq : 5 }})
+//           //         not equal to operator...........db.drugs.find({ "price" : {$ne : 5 }})
+using LIMIT db.Staffs.find({age:{$lte:24}},{_id: 0}).limit(-1) in limit -13 = 13
+                                                     skip cant use negative n
+                                                     sort() cant use -negative
+
+
+17 . To find document with ages ranging from 26 and 59........db.Staffs.find({"Staff_Age" :{$in : [26, 59]}}) 
+18 . To find document with ages  ranging OUTSIDE 26 and 59........db.Staffs.find({"Staff_Age" :{$nin : [26, 59]}})
+NB: LINE 17 AND 18 (QUERY CAN BE CARRIED OUT ONLY ON MULTIPLE  DOCUMENT THEREFORE ARRAY IS REQUIRED ELSE EQUAL TO AND NOT EQUAL TO SHOULD BE APPLLIED
+To find document Greater than  age 59 ........db.Staffs.find({"Staff_Age" :{$gte : 59 }})
+projecting nested docs.........db.movies.find({},{"awards" :1,"_id":0})
+to project the first three docs...............db.movies.find({"cast" : "Charles Chaplin"},{"title": 1, "_id" :0}).limit(3)......question
+to skip the last 3 docs wen projecting......db.movies.find({"cast" : "Charles Chaplin"},{"title": 1, "_id" :0}).skip(-3).......question
+to sort document.............db.Staffs.find({"Name" : "Patrick Salah"},{"Name" : 1, "_id" :0}).sort({"Name" : 1})
+db.Staffs.findOneAndUpdate({"name" : "Macbeth Sicario"},{$unset : {"Age" :simpl","salary": "myname"}},{returnNewDocument : true}) note:the accuracy of the values in the field not important only the fieldname
+56. db.movies.findOneAndUpdate({"title":"Macbeth"},{$rename:{"comments":"num_mflix_comments"},$setOnInsert:{"created_time":new Date()}},{upsert : true,returnNewDocument:true}) 
+line 56 explains setOnInsert which works only if the insert in upsert function is carried out(self explanatory)
+                 upsert is the combination of insert and update it can be used to inert a new document or update an existing one
+
+
+TO DELETE
+to delete  fields............. db.Drugs.deleteOne({"Drug":"Name"})
+MongoDB uses field: { $operator: value }
+This is invalid because every $group must have an _id.
+_id is the key MongoDB groups by (you can rename later with $project).
+$group must have _id field specifying the group key
+db.drugs.updateOne({_id:1},{$set:{name:"creed",age:'43'}}) ...............update multiple fields in a document 
+db.drugs  .updateOne({_id:1},{$mul:{age:'43'}}) .........multiplication
+ a dcument cant be renamed
+db.drugs.updateMany({},{$rename:{field name:"new field name"}})............renaming a fieldname
+to rename Array field name.....({},{$rename:{field name:"new field name"}}) .....mhn
+to update values in array> db.Staffs.findOneAndUpdate({_id:3},{$push:{Hobbies:{$each:["Playing", "reading"]}}},{returnNewDocument:1})
+using AND operator.......db.Staffs.countDocuments ({$and :[{"age" : 34}, {"year" : 2008}]}) also db.movies.countDocuments ({"Age": 34, "year" : 2008})
+using OR operator().........db.movies.find({ $or : [{_id:6 : },{"_id" : 1},{"age" : "34"}]})
+to use regex(regex is used only wen u know on half of the field )..........db.Staffs.find({Name:{$regex:'Patrick'}})
+to use caret (^ To find only the strings that start with the given regular expression, the caret operator (^) can be used ).............db.movies.find({"title" : {$regex :"^Opera"}})
+strings that end with the given regular expression............db.Staffs.find({Name:{$regex:'Patrick$'}})
+searchin array withe $ALL operator db.movies.find({"languages":{"$all" :[ "English", "French", "Cantonese"]}}
+using slice in an array............db.Staffs.find( { _id : 3 }, { "Hobbies": { $slice: 3 } } ).pretty()(to get to last 3 fields the minus sign is in front of 3)
+to skip the first 4 and project the next 2..........db.Staffs.find( { _id : 3 }, { "Hobbies": { $slice: [4,2] } } ).pretty()....where the first argument indicates the number of elements to be skipped and the second one indicates the number of elements to be returned
+db.movies.findOneAndUpdate({"title" : "Macbeth"},{$currentDate : {"created_date" : true,"last_updated.date" : {$type : "date"},"last_updated.timestamp" : {$type : "timestamp"},}},{returnNewDocument : true}).....to add date to a document
+db.movies.find({"languages":{"$all" :[ "English", "French", "Cantonese"]}}).......all operator project all languages irrespective of arrangement
+db.movies.find({"languages" : "Syriac"},{"languages.$" :1}).......(.$)makes sure only Syriac from an array is projected
+                                                                   P.S the query above must executed without (.$) before executed with (.$)
+db.users.updateMany({},[{$set : {"name_array" : {$split : ["$full_name", " "]}},},{$set: {"first_name" : {"$arrayElemAt" : ["$name_array", 0]},"last_name" : {"$arrayElemAt" : ["$name_array", 1]}}},{$project : {"first_name" : 1,"last_name" : 1,"full_name" : {$concat : [{$toUpper : "$first_name"}, " ", "$last_name"]}}}])
+$push can only add one element at a time to add multiple documentdb.movies.findOneAndUpdate({_id : 111},{$push : {"genre" : {$each : ["History","Action"]}},
+{"returnNewDocument" : true})
+$sort operator can use -1(negative values)
+$concat is used to combine strings
+school> db.Staffs.findOneAndUpdate({_id:3},{$push:{Hobbies:{$each:["Playing","reading"]}}},{returnNewDocument:1})
+db.student.createTndex({name:1})..creating an index
+db.Student.find().explain("executionStats")
+$pullAll to remove certain elements from array db.movies.findOneAndUpdate({_id : 111},{$pullAll : {"genre" : ["Action", "Crime"]}},{"returnNewDocument" : true })
+ne to chack with one values nin with multiple
+questions
+q1. a
+q2. db.orders.find({ $orderDate: { $gt: "2023-01-01" } })
+q3. true
+q4. a
+q5. db.customers.findOneAndUpdate({ email: "user@example.com" },{ $set: { subscribed: true } },{ returnDocument: true })(wild guess)
+
+u skipped these
+explain  db.Staffs.findOneAndUpdate({_id:3},{$push:{Hobbies:{$each:["Playing", "reading"]}}},{returnNewDocument:1})
+ elaborate  Indexes
+why cant $sort be used in an $adddToSet expression
+what does the extra empty bracket do and what is is used for db.users.updateMany({},{$operator: {field : value }})
+ elaborate (automation) Cloud-hosted MongoDB with UI and automation
+ elaborate Set IP whitelist to allow your client access, Manage users and roles for security
+Not handling async properly when using drivers
+why is node js used when interacting with atlas from vscode
+wat does white space mean in split
+
+teach me lookup with examples
+conditions for using push, $push, $pull, $addToSet, $lookup, $group, $sort, $project, $limit
+i need to train me to learn query documents, Updating with Aggregation Pipelines and Arrays, Data Aggregation, Servers and Clients, Coding JavaScript in MongoDB
+whats the error db.Customer.insertMany({_id : 12, items: [{"name" : "backpack", "price" : 127.59, "quantity" : 3}, {"name" : "notepad", "price" : 17.6, "quantity" : 4}, {"name" : "binder", "price" : 18.17, "quantity" : 2}, {"name" : "pens", "price" : 60.56, "quantity" : 3}]})
+MongoInvalidArgumentError: Argument "docs" must be an array of documents
+i need to learn all the different aspects of aggregation pipelines i.e to query, transform, and join data across collections. whether By combining the methods or general lookup
+explain how this: var findMoviesByGenre = function(genre, pageNumber, pageSize){var movies = db.movies.find({"genres" : "Action"},{"_id" : 0, "title" :1}).sort({"imdb.rating" : -1}).skip(3).limit(5).toArray()}
+ turned to this: var findMoviesByGenre = function(genre, pageNumber, pageSize){var toSkip = 0;if(pageNumber < 2){toSkip = 0;} else{toSkip = (pageNumber -1) * pageSize;}var movies = db.movies.find(
+{"genres" : genre},{"_id" : 0, "title" :1}).sort({"imdb.rating" : -1}).skip(toSkip).limit(pageSize).toArray()print("************* Page : " + pageNumber)for(var i =0; i < movies.length; i++){print(movies[i].title)}}
+
+explain this(then give different examples(2) while explain  ) var chapter7Activity = function() {
+var pipeline = [{$match: {released: {$lte: new ISODate("2001-01-01T00:00:00Z")},"awards.wins": {$gte: 1},}},{$sort: {"awards.nominations": -1}},{ $group: {_id: {"$arrayElemAt": ["$genres", 0]},"film_id": {$first: "$_id"},"film_title": {$first: "$title"},"film_awards": {$first: "$awards"},"film_runtime": {$first: "$runtime"},"genre_award_wins": {$sum: "$awards.wins"},}},{ $lookup: {from: "comments",localField: "film_id",
+foreignField: "movie_id",as: "comments"}},{ $project: {film_id: 1,film_title: 1,film_awards: 1,film_runtime: { $add: [ "$film_runtime", 12]},genre_award_wins: 1,"comments": { $slice: ["$comments", 1]}}},{ $sort:
+{"genre_award_wins": -1}},{ $limit: 3}];db.movies.aggregate(pipeline).forEach(printjson);}
+Chapter7Activity();
+
+| Keyword   | Works on Arrays? | Used For                        | Accepts Negative? |
+| --------- | ---------------- | ------------------------------- | ----------------- |
+| `$limit`  | No               | Limit number of results         | ❌                 |
+| `$skip`   | No               | Skip n results                  | ❌ (not supported) |
+| `$sort`   | No               | Sort documents by field         | ✅ (reverse order) |
+| `$push`   | ✅ Arrays only    | Add to array (can use `$each`)  | ❌                 |
+| `$slice`  | ✅ Arrays         | Limit array size (e.g., last 5) | ✅                 |
+| `split()` | ❌ (JS func)      | Splits string by a delimiter    | N/A               |
+
+
+MongoDB Quick Essentials
+1. Basic CRUD Operations
+Operation	Method	Example
+Create	insertOne() / insertMany()	db.users.insertOne({name: "Ali", age: 25})
+Read	find() / findOne()	db.users.find({age: {$gte: 20}})
+Update	updateOne() / updateMany()	db.users.updateOne({name: "Ali"}, {$set: {age: 26}})
+Delete	deleteOne() / deleteMany()	db.users.deleteMany({age: {$lt: 18}})
+
+2. Query Operators
+Comparison: $eq, $gt, $gte, $lt, $lte, $ne, $in, $nin
+Logical: $and, $or, $not, $nor
+Element: $exists, $type
+Evaluation: $regex (regular expressions)
+Array: $all, $elemMatch, $size, $push, $pull
+
+3. Projection
+Controls which fields are returned. Use 1 to include, 0 to exclude (except _id can be excluded).
+Important: Can't mix inclusion and exclusion (except _id).
+Example:
+db.products.find({}, { name: 1, price: 1, _id: 0 })
+
+4. Update Operators
+$set, $unset, $inc, $push, $pull, $addToSet
+
+5. Aggregation
+Pipeline stages like $match, $group, $sort, $project, $limit, $lookup
+$group must have _id field specifying the group key
+
+6. Indexes
+Improve query speed
+Created via db.collection.createIndex({field: 1}) for ascending
+
+7. MongoDB Atlas Basics
+Cloud-hosted MongoDB with UI and automation
+Connect with a connection string (mongodb+srv://...)
+Use MongoDB Compass or your code driver to connect
+Set IP whitelist to allow your client access
+Manage users and roles for security
+Can create clusters (free/shared or paid)
+Supports backups, monitoring, and alerts
+
+8. Common Pitfalls
+Mixing data types in queries (string vs number)
+Wrong projection syntax
+Forgetting to wrap update operators in {}
+Missing _id in $group stage in aggregation
+Not handling async properly when using drivers
+
+Home  work
+1. division........db.Staffs.aggregate([{$match:{_id:3}},{$project: {name:1, halfAge:{$divide: ['$Age',2]}}}])....done
+2.search how to renaming db 
+3. search how to insert/Update (current date and time) on mongo shell...school> db.Staffs.updateMany({_id : 3},{$set :{registerDate:new Date()}})….done
+4. update Array..............db.Staffs.findOneAndUpdate({_id:3},{$push:{Hobbies:"dancing"}},{returnNewDocument:1})
+5. distinct.....................db.Staffs.distinct("Age", {"Name" : "Davida Omotoye"})
+6.search how to renaming collection..........db.Staffs.renameCollection("Staffco") or db.adminCommand({ renameCollection: "oldDatabase.oldCollection", to:"newDatabase.newCollection" }...done
+7.which is faster aggregate and find....
+8.subtract and avg.....
+9.group based on date and time....
+10.is there an Operator for Average....
+11.proect the average with a new field without updating the document with that particular field
+
+Push
+set
+$lookup
+$rename
+
+
+db.saldes.find({_id : 3},{$push : {"genre" : "unknown"}},{"returnNewDocument" : true})
+
+ 
