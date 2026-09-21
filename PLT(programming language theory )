@@ -1,0 +1,488 @@
+psuedocode that accepts 5 values and prints the largest
+begin
+num num1 num2 num3 num4 num5 max
+begin
+display (enter a digit)
+end
+accept num1
+begin
+display (enter a digit)
+end
+accept num2
+begin
+display (enter a digit)
+end
+accept num3
+begin
+display (enter a digit)
+end
+accept num4
+begin
+display (enter a digit)
+end
+accept num5
+max = 0
+if (num1 > max)
+max = num1
+endif
+if (num2 > num1)
+max = num2
+endif
+if (num3 > num2)
+max = num3
+endif
+if (num4 > num3)
+max = num4
+endif
+if (num5 > num5)
+max = num5
+endif
+end
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SWITCH CASE
+Begin
+numeric nUserInput
+display "Enter a digit between 1 and 4"
+accept nUserInput
+switch ( UserInput)
+begin
+
+case 1:
+display "Good Morning"
+break
+
+case 2:
+display "Good Afternoon"
+break
+
+case 3:
+display "Good Evening"
+break
+
+case 4:
+display "Good Night"
+break
+
+default:
+ display "Invalid Numer"
+
+end
+display "Testing"
+
+end
+\nUserInput  ==Case
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE PSEUDOCODE WHERE A NUMBER IS ACCEPTED AND INCREMEMNTED  BY 1 AND RESULT 
+
+begin
+   numeric  num1    1
+        accept  num1
+  ans = num1 + 1
+      display ans
+end
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+calculate the sum of 10 numbers
+begin
+num sum = 0 numz
+accept numz
+for (counter = 0;i < 10; ni++)
+sum = sum + numz
+
+display sum
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+begin 
+char cGreet
+cGreet = "Hello World"
+display cGreet
+end
+
+begin
+num num1 num2 sum = 0
+display "Enter a Number"
+accept num1
+display "Enter another Number"
+accept num2
+sum = num1 +num2
+display sum
+end
+
+
+begin
+
+   num num3 num2 num1
+    display "Enter your first number"
+  accept num1
+  display "Enter your first number"
+  accept num2
+  display "Enter your first number"
+  accept num3
+  display num3
+  display num2
+  display 1
+  end
+
+
+begin 
+numeric nnum nsum nadd
+sum = 1
+for (num = 0 num<=10 ; num+1)
+nadd = nsum + nadd
+display nadd
+end
+
+
+begin
+num nnum
+display "Enter a number"
+accept nnum
+if (nnum % 2)
+display "It's an even number"
+else 
+display "It isn't an even number"
+end
+
+begin
+num nmax num1 num2
+display "Enter a Number"
+accept num1
+display "Enter a Number"
+accept num2
+max = 0
+if num1 > max
+max = num1
+if num2 > max
+max = num2
+display max
+end
+
+begin 
+char cemail cname 
+num nage nphone
+display "Enter your Name"
+accept cname
+display "Enter your email"
+accept cemail
+display "Enter your Phone Number"
+accept nphone
+display "Enter your first number"
+accept num1display "Enter your Age"
+accept nage
+display cname nage nphone cemail
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                                                   PREPARATIONS FOR PLT EXAM
+1.2
+step1: start algorithm
+step2: enter input 
+step3: if( input / 5)
+step4: display number divisible by 5
+step5: otherwise display number isn't divisible by 5
+
+begin
+numerin nNum1 nNum2 nAns
+accept num1
+accept um 2
+nAns = nNum1*nNum2
+display nAns
+end
+
+begin
+       numeric n1 n2 n3 n4 n5 nmax = 0
+         input 5 numbers
+         accept n1 n2 n3 n4 n5 
+      if n1 > nmax
+   begin
+      display n1 is the largest
+   end
+     else begin
+    if n2 > nmax
+   begin
+      display n2 is the largest
+   end
+     else
+   begin
+    if n3 > nmax
+   begin
+      display n3 is the largest
+   end
+    else
+   begin
+    if n4 > nmax
+   begin
+     display n4 is the largest
+   end
+   else begin
+     if n3 > nmax
+   begin
+     display n3 is the largest
+     end
+   end
+    end
+       end
+end
+
+
+begin
+    numeric nph  nR nH
+accept nH nR
+    nph=nH * nP
+ display nph
+end
+
+
+begin
+numeric n1 n2 n3 n4 n5 
+switch(n1)
+begin
+case'n1' :
+display " is the greatest number"
+break
+case'n2' :
+display " is the greatest number"
+break
+case'n3' :
+display " is the greatest number"
+break
+case'n4' :
+display " is the greatest number"
+break
+case'n5' :
+display " is the greatest number"
+break
+display 'invalid number'
+end
+
+
+begin
+numeric nN1 nN2 nN3
+accept nN1 nN2 nN3
+max =0
+ if n1 > nmax
+   begin
+      display n1 is the largest
+   end
+     else begin
+    if n2 > nmax
+   begin
+      display n2 is the largest
+   end
+     else
+   begin
+    if n3 > nmax
+   begin
+      display n3 is the largest
+   end
+end
+  end
+display
+incomplete
+
+
+
+
+begin
+num nAge
+accept nAge
+switch (nAge)
+begin
+  case(5>= nAge <= 12) :
+    display ' Children'
+   break                                                                                     
+ case(13>= nAge ==  <= 19) :
+    display ' Teenagers'
+   break
+ case(20 >= nAge <= 35) :
+    display ' Young adults '
+   break                                                                                                                                                                          
+case(36 >= nAge <= 45) :
+    display ' Mature Adults '
+   break                                                                                     
+ case(46>= nAge <= 55) :
+    display ' Elders '
+   break               
+ case( nAge >=56) :
+    display ' Seniore'
+   break   
+end 
+end                                                                                                                                                        
+
+
+begin
+numeric num1 num2 nsum
+accept num1 num2
+nsum = num1 / num2
+display nsum
+end
+
+begin
+ numeric nM nK
+accept nK
+nM = nK * 1000
+display nM
+end
+
+begin
+char nIn nOut
+accept nIn
+nOut = "Hello" + nIn
+display nOut
+end
+
+begin
+numeric n1 n2 n3 n4 n5 nAvg
+accept n1 n2 n3 n4 n5 
+nAvg = (n1+ n2 + n3 + n4 + n5) / 2
+display nAvg
+end
+
+
+begin
+numeric npn nq nsum
+character cComb cBrush cCream
+nsum = npn * nq
+switch (cComb)
+   begin
+        case 'cComb':
+   accept npn , nq 
+    display nsum
+  break
+       case 'cBrush':
+   accept npn , nq 
+    display nsum
+  break
+       case 'cCream':
+   accept npn , nq 
+    display nsum
+  break
+  display 'invalid product'
+     end
+end
+
+
+begin
+numeric nn1
+accept nn1
+if nn1 % 5 ==0
+begin
+display nn1 is divisible by 5
+else 
+begin
+display it isnt
+end
+end
+
+begin
+numeric n1 n2 n3
+accept n1 n2 n3
+switch (n1)
+  begin
+case 'n1 > n2 AND n1 > n3'
+   display 'n1 is the largest' :
+break
+case 'n2 > n1 AND n2 > n3'
+   display 'n2 is the largest' :
+break
+case 'n3 > n2 AND n3 > n1'
+   display 'n1 is the largest' :
+break
+end
+end
+
+begin
+numeric nAge
+accept nAge 
+if nAge >= 18
+begin
+display you're eligible to vote
+end
+else 
+begin
+ display u arent eligible to vote
+end
+end
+
+
+begin
+char cfood 
+display corn amala meat fish
+display enter menu selection
+accept nfood
+switch(nfood)
+begin
+case 'corn':
+display 'your bill is 10k'
+break
+case 'amala':
+display 'your bill is 19k'
+break
+case 'meat':
+display 'your bill is 30k'
+break
+case 'fish':
+display 'your bill is 45k'
+break
+display 'invalid option'
+end
+end
+
+
+begin
+char up arrow down arrow left arrow right arrow command
+accept command
+switch(command)
+begin
+case 'dg':
+incomplete
+
+
+Conditional Stataements
+
+Write a program to determine if a number is even or odd.
+begin
+numeric num1
+accept num1
+if(num % 2 == 0)
+begin
+this is an even number
+end
+else
+begin 
+this isn't a even number
+end
+end
+
+
+Develop a program to check if a year is a leap year.
+begin
+numeric yr1
+accept yr1
+if (yr1 % 4 == 0 AND yr1 % 100 == 0)
+begin 
+display (this is a leap year)
+else
+nope
+end
+
+Loops
+
+Write a program to print the Fibonacci sequence up to a given number.
+begin
+char name
+accept name
+for (i = 0 ; i>3 ; i++)
+display name
+end
+
+Functions
+
+Write a function to calculate the area of a rectangle
+begin
+numeric num num1 num2
+accept num1 , 2
+num = 2(num1 + num2)
+display num
+
+Create a function to convert Celsius to Fahrenheit.
+Develop a function to check if a number is prime.
+
+
+
